@@ -1,5 +1,6 @@
-link: 
+all:
 	stow nvim
+	stow zsh
 
 destroy:
-	stow -D nvim
+	stow -D nvim zsh
