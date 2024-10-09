@@ -52,7 +52,7 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/python-config.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/segments.json)"
 
 # # keep at end of the file
 eval "$(zoxide init zsh)"

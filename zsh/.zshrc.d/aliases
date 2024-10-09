@@ -2,7 +2,7 @@ alias venv='source .venv/bin/activate'
 
 # nvim
 alias nvc='cd ~/.config/nvim/ && nvim && cd -'
-alias pnv='venv && nvim'
+alias n="nvim"
 
 # python
 alias py=python
