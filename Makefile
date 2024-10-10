@@ -7,6 +7,8 @@ tmux:
 	chmod +x setup/tmux.sh
 	setup/tmux.sh
 
+terminal: oh-my-posh tmux
+
 all: oh-my-posh tmux
 	stow nvim
 	stow zsh

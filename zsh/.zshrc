@@ -5,9 +5,8 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(
   git
-#  aliases
-#  tmux
-#  aws
+  aliases
+  aws
 #  redis-cli
 )
 
@@ -19,6 +18,7 @@ bindkey -v
 zstyle :compinstall filename '/home/joflaherty/.zshrc'
 
 fpath+=~/.zsh/
+fpath+=~/.zfunc/
 # autoload -Uz compinit
 # compinit
 # End of lines added by compinstall
@@ -62,12 +62,8 @@ export PATH="$HOME/.local/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-nvm() {
-    unset -f nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-    nvm "$@"
-}
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 
 zstyle ':completion:*' menu select
@@ -76,4 +72,4 @@ fpath+=~/.zfunc
 # Go installation
 export PATH=$PATH:/usr/local/go/bin
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
