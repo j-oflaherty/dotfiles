@@ -37,11 +37,9 @@ unsetopt share_history
 
 # Pyenv setup
 # Pyenv setup
-if command -v pyenv >/dev/null; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init --path)"
-fi
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 
 # fzf
 # if [ -x "$(command -v fzf)"  ]
@@ -52,7 +50,7 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/segments.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/segments.yaml)"
 
 # # keep at end of the file
 eval "$(zoxide init zsh)"

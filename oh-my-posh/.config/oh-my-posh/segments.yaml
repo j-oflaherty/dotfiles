@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version: 2
+final_space: true
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: path
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: ""
+        properties:
+          style: folder
+        background: "lightGreen"
+        foreground: "#000000"
+        template: '  {{ .Path }} '
+      - type: git
+        style: powerline
+        leading_diamond: ""
+        powerline_symbol: ""
+        background: "#e25a38"
+        foreground: "#000000"
+        template: "{{if .UpstreamIcon }} {{ .UpstreamIcon }}{{ end }} {{ .HEAD }} "
+        properties:
+          fetch_status: true
+          fetch_stash_count: true
+          fetch_upstream_icon: true
+          untracked_modes:
+            /Users/user/Projects/oh-my-posh/: no
+  - type: rprompt
+    alignment: right
+    segments:
+      - type: python
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: ""
+        foreground: "#000000"
+        background: yellow
+        template: "  {{ .Full }} "
+        properties:
+          display_mode: enviroment
+          home_enabled: true
+      - type: python
+        style: "diamond"
+        leading_diamond: ""
+        trailing_diamond: ""
+        foreground: "#FFFFFF"
+        background: "blue"
+        template: "{{ if .Venv }}({{ .Venv }}){{ end }}"
+        properties:
+          display_mode: enviroment
+          home_enabled: true
