@@ -10,3 +10,6 @@ alias py=python
 #
 alias essh='vim ~/.ssh/config'
 
+# github
+alias ghs='gh status'
+
