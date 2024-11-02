@@ -374,7 +374,7 @@ mypy.args = {
 }
 
 require("lint").linters_by_ft = {
-	python = { "mypy", "ruff" },
+	python = { "mypy", "flake8" }, -- "ruff" },
 	go = { "gofumpt" },
 }
 

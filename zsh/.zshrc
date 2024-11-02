@@ -36,7 +36,6 @@ unsetopt autocd
 unsetopt share_history
 
 # Pyenv setup
-# Pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
@@ -71,3 +70,11 @@ fpath+=~/.zfunc
 export PATH=$PATH:/usr/local/go/bin
 
 # . "$HOME/.cargo/env"
+
+# pnpm
+export PNPM_HOME="/home/joflaherty/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
