@@ -157,7 +157,7 @@ return {
 		event = "VeryLazy",
 		lazy = false,
 
-		version = "v0.0.8", -- set this if you want to always pull the latest change
+		version = false, -- set this if you want to always pull the latest change
 		opts = {
 			-- add any opts here
 		},

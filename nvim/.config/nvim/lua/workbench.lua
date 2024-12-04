@@ -183,6 +183,9 @@ lspconfig.lua_ls.setup({
 lspconfig.pyright.setup({
 	capabilities = capabilities,
 	filetypes = { "python" },
+	root_dir = function(fname)
+		return lspconfig.util.root_pattern(".git")(fname) or lspconfig.util.path.dirname(fname)
+	end,
 	settings = {
 		python = {
 			analysis = {
@@ -322,9 +325,10 @@ local builtin = require("telescope.builtin")
 
 Map("n", "<leader>ff", builtin.find_files, {})
 Map("n", "<leader>fg", builtin.live_grep, {})
+Map("n", "<leader>of", builtin.oldfiles, {})
 Map("n", "<leader>ft", builtin.grep_string, {})
-Map("n", "<space><space>", builtin.grep_string, {})
 Map("n", "<leader>fh", builtin.help_tags, {})
+Map("n", "<space><space>", builtin.buffers, {})
 
 -- git
 Map("n", "<leader>gs", builtin.git_status, {})
@@ -352,6 +356,7 @@ require("conform").setup({
 			end
 		end,
 		toml = { "taplo" },
+		json = { "prettier" },
 	},
 	format_on_save = {
 		-- I recommend these options. See :help conform.format for details.
@@ -362,7 +367,7 @@ require("conform").setup({
 
 -------------------- LINTER --------------------
 local lint = require("lint")
-local mypy = lint.linters.mypy
+local mypy = lint
 mypy.args = {
 	"--no-color-output",
 	"--no-error-summary",
@@ -374,7 +379,7 @@ mypy.args = {
 }
 
 require("lint").linters_by_ft = {
-	python = { "mypy", "flake8" }, -- "ruff" },
+	python = { "mypy", "ruff" }, -- "flake8" },
 	go = { "gofumpt" },
 }
 
@@ -410,6 +415,18 @@ Map("n", "<A-i>", '<CMD>lua require("FTerm").toggle()<CR>')
 Map("t", "<A-i>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
 
 ------------------ INTERACTIVE -----------------
+local iron = require("iron.core")
+iron.setup({
+	config = {
+		repl_definition = {
+			python = {
+				command = { "ipython", "--no-autoindent" },
+				format = require("iron.fts.common").bracketed_paste_python,
+			},
+		},
+		repl_open_cmd = require("iron.view").split.vertical.botright(0.4),
+	},
+})
 require("notebook-navigator").setup({
 	keys = {
 		{ "<c-X>", "<cmd>lua require('notebook-navigator').run_cell()<cr>" },

@@ -33,6 +33,11 @@ end)
 Map("n", "<a-q>", ":q<CR>")
 Map("n", "<a-w>", ":bd<CR>")
 
+Map("n", "<c-l>", "<c-w>l")
+Map("n", "<c-h>", "<c-w>h")
+Map("n", "<c-j>", "<c-w>j")
+Map("n", "<c-k>", "<c-w>k")
+
 -- lazy nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

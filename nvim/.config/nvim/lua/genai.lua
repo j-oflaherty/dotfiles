@@ -4,6 +4,7 @@ vim.opt.laststatus = 3
 require("copilot").setup({
 	suggestion = {
 		enabled = true,
+		auto_trigger = true,
 	},
 })
 
@@ -13,4 +14,4 @@ require("avante").setup({
 		position = "left",
 	},
 })
-Map("n", "<C-l>", ":AvanteToggle<CR>")
+Map("n", "<leader>aa", ":AvanteToggle<CR>")
