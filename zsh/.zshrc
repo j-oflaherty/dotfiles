@@ -39,17 +39,13 @@ unsetopt share_history
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-pyenv() {
-    unset -f pyenv
-    eval "$(command pyenv init --path)"
-    pyenv "$@"
-}
-#
-# fzf
-# if [ -x "$(command -v fzf)"  ]
-# then
-# 	source /usr/share/fzf/shell/key-bindings.zsh
-# fi
+eval "$(command pyenv init --path)"
+
+if [ -x "$(command -v fzf)"  ]
+then
+ 	source <(fzf --zsh)
+fi
+
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
