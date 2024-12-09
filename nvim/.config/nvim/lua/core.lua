@@ -26,7 +26,7 @@ Map("n", "<esc>", function()
 	vim.cmd("nohlsearch")
 end)
 
-Map("n", "<C-s>", function()
+Map("n", "<c-s>", function()
 	vim.cmd("w")
 end)
 
@@ -37,6 +37,9 @@ Map("n", "<c-l>", "<c-w>l")
 Map("n", "<c-h>", "<c-w>h")
 Map("n", "<c-j>", "<c-w>j")
 Map("n", "<c-k>", "<c-w>k")
+
+Map("n", "<a-.>", ":bNext<CR>", { silent = true })
+Map("n", "<a-,>", ":bprevious<CR>", { silent = true })
 
 -- lazy nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
