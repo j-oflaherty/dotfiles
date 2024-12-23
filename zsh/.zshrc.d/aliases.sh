@@ -8,7 +8,7 @@ alias n="nvim"
 alias py=python
 
 #
-alias essh='vim ~/.ssh/config'
+alias essh='nvim ~/.ssh/config'
 
 # github
 alias ghs='gh status'

@@ -7,6 +7,7 @@ plugins=(
   git
   aliases
   aws
+  docker
 #  redis-cli
 )
 
@@ -79,3 +80,4 @@ export PATH=$PATH:/usr/local/go/bin
 #   *) export PATH="$PNPM_HOME:$PATH" ;;
 # esac
 # pnpm end
+. "$HOME/.cargo/env"
