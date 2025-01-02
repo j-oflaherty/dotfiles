@@ -73,8 +73,8 @@ return {
 			Map("n", "<leader>ff", builtin.find_files, {})
 			Map("n", "<leader>fg", builtin.live_grep, {})
 			Map("n", "<leader>ft", builtin.grep_string, {})
-			Map("n", "<leader>fb", builtin.buffers, {})
-			Map("n", "<space><space>", builtin.oldfiles, {})
+			Map("n", "<leader>of", builtin.oldfiles, {})
+			Map("n", "<space><space>", builtin.buffers, {})
 			Map("n", "<leader>gb", builtin.git_branches, {})
 		end,
 	},
@@ -99,10 +99,10 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = function()
-					if ConfigExists("pyproject.toml", "ruff") then
-						return { "ruff", "ruff_fix" }
+					if require("conform").get_formatter_info("ruff_format", bufnr).available then
+						return { "ruff_format", "ruff_fix" }
 					else
-						return { "black", "isort" }
+						return { "isort", "black" }
 					end
 				end,
 			},
@@ -111,9 +111,16 @@ return {
 				lsp_format = "fallback",
 			},
 			-- Set up format-on-save
-			format_on_save = { timeout_ms = 500 },
+			format_on_save = { timeout_ms = 1000 },
 		},
 		init = function()
+			-- Ensure Python files are formatted and saved on buffer write
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.py",
+				callback = function()
+					require("conform").format({ async = true })
+				end,
+			})
 			-- If you want the formatexpr, here is the place to set it
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
@@ -159,10 +166,20 @@ return {
 				return newVirtText
 			end
 
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
+			local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+			for _, ls in ipairs(language_servers) do
+				require("lspconfig")[ls].setup({
+					capabilities = capabilities,
+					-- you can add other fields for setting up lsp server in this table
+				})
+			end
+
 			require("ufo").setup({
-				provider_selector = function(bufnr, filetype, buftype)
-					return { "treesitter", "indent" }
-				end,
 				fold_virt_text_handler = virtual_text_fold_handler,
 			})
 		end,
@@ -180,10 +197,10 @@ return {
 			harpoon:setup()
 			-- REQUIRED
 
-			Map("n", "<leader>h", function()
+			Map("n", "<leader>ha", function()
 				harpoon:list():add()
 			end)
-			Map("n", "<a-h>", function()
+			Map("n", "<leader>hl", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
 			end)
 
@@ -213,9 +230,9 @@ return {
 	------------------- GIT FUTGITIVE -------------------
 	{
 		"tpope/vim-fugitive",
-		cmd = { "Git", "G" },
+		cmd = { "Git", "G", "Gvdiffsplit" },
 		keys = {
-			"<a-g>",
+			"<c-g>",
 			":G<CR>",
 			desc = "Open Fugitive vim view",
 		},

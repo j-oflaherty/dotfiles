@@ -1,5 +1,6 @@
 vim.o.autoread = true
 vim.wo.relativenumber = true
+
 vim.wo.number = true
 vim.wo.numberwidth = 2
 
@@ -30,16 +31,11 @@ Map("n", "<c-s>", function()
 	vim.cmd("w")
 end)
 
-Map("n", "<a-q>", ":q<CR>")
-Map("n", "<a-w>", ":bd<CR>")
-
+Map("n", "<leader>q", ":q<CR>", { silent = true })
 Map("n", "<c-l>", "<c-w>l")
 Map("n", "<c-h>", "<c-w>h")
 Map("n", "<c-j>", "<c-w>j")
 Map("n", "<c-k>", "<c-w>k")
-
-Map("n", "<a-.>", ":bNext<CR>", { silent = true })
-Map("n", "<a-,>", ":bprevious<CR>", { silent = true })
 
 -- lazy nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
