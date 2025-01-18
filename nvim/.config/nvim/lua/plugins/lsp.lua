@@ -52,8 +52,15 @@ return {
 		"mfussenegger/nvim-lint",
 		event = "BufWritePost",
 		config = function()
+			local python_linters = { "mypy" }
+			if ConfigExists("pyproject.toml", "ruff") then
+				python_linters[2] = "ruff"
+			else
+				python_linters[2] = "flake8"
+			end
+
 			require("lint").linters_by_ft = {
-				python = { "mypy", "ruff" },
+				python = python_linters,
 				go = { "gofumpt" },
 			}
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {

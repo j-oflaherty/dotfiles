@@ -46,6 +46,7 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		lazy = true,
 		opts = {},
 		keys = {
 			{
@@ -166,10 +167,7 @@ return {
 			map("n", "<leader>w", "<Cmd>BufferClose<CR>", opts)
 		end,
 		opts = {
-			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-			-- animation = true,
-			-- insert_at_start = true,
-			-- …etc.
+			animation = false,
 			auto_hide = 1,
 			clickable = false,
 			focus_on_close = "previous",
@@ -230,8 +228,8 @@ return {
 		"numToStr/FTerm.nvim",
 		init = function()
 			local fterm = require("FTerm")
-			Map("n", "<c-i>", fterm.toggle)
-			Map("t", "<c-i>", fterm.toggle)
+			Map("n", "<c-u>", fterm.toggle)
+			Map("t", "<c-u>", fterm.toggle)
 		end,
 		opts = {
 			border = "rounded",

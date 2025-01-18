@@ -41,3 +41,8 @@ lspconfig.pyright.setup({
 		},
 	},
 })
+
+lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+
+lspconfig.angularls.setup({ capabilities = capabilities })
+lspconfig.ts_ls.setup({ capabilities = capabilities })

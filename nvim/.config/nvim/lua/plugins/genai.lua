@@ -2,16 +2,21 @@ return {
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
-		lazy = false,
+		lazy = true,
 		version = false, -- set this if you want to always pull the latest change
 		opts = {
 			provider = "claude",
-			auto_suggestions_provider = "copilot",
+			auto_suggestions_provider = "claude-haiku",
 			windows = {
-				position = "left",
+				position = "right",
 			},
 			behaviour = {
-				auto_suggestions = true,
+				auto_suggestions = false,
+			},
+			mappings = {
+				suggestion = {
+					accept = "<Tab>",
+				},
 			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
