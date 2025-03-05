@@ -53,7 +53,7 @@ return {
 		event = "BufWritePost",
 		config = function()
 			local python_linters = { "mypy" }
-			if ConfigExists("pyproject.toml", "ruff") then
+			if ConfigExists("pyproject.toml", "tool.ruff") then
 				python_linters[2] = "ruff"
 			else
 				python_linters[2] = "flake8"

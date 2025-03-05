@@ -33,7 +33,7 @@ return {
 			},
 			{
 				"<leader>ds",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
+				"<cmd>Trouble symbols toggle focus=true<cr>",
 				desc = "Symbols (Trouble)",
 			},
 			{
@@ -46,7 +46,8 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		lazy = true,
+		lazy = false,
+		priority = 10000,
 		opts = {},
 		keys = {
 			{
@@ -124,59 +125,59 @@ return {
 	},
 
 	---------- BARBAR ----------
-	{
-		"romgrk/barbar.nvim",
-		dependencies = {
-			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
-		},
-		init = function()
-			vim.g.barbar_auto_setup = false
-
-			local map = vim.api.nvim_set_keymap
-			local opts = { noremap = true, silent = true }
-
-			-- Move to previous/next
-			map("n", "<leader>,", "<Cmd>BufferPrevious<CR>", opts)
-			map("n", "<leader>.", "<Cmd>BufferNext<CR>", opts)
-
-			-- Re-order to previous/next
-			map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
-			map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", opts)
-
-			-- Goto buffer in position...
-			map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>", opts)
-			map("n", "<leader>2", "<Cmd>BufferGoto 2<CR>", opts)
-			map("n", "<leader>3", "<Cmd>BufferGoto 3<CR>", opts)
-			map("n", "<leader>4", "<Cmd>BufferGoto 4<CR>", opts)
-			map("n", "<leader>5", "<Cmd>BufferGoto 5<CR>", opts)
-			map("n", "<leader>6", "<Cmd>BufferGoto 6<CR>", opts)
-			map("n", "<leader>7", "<Cmd>BufferGoto 7<CR>", opts)
-			map("n", "<leader>8", "<Cmd>BufferGoto 8<CR>", opts)
-			map("n", "<leader>9", "<Cmd>BufferGoto 9<CR>", opts)
-			map("n", "<leader>0", "<Cmd>BufferLast<CR>", opts)
-
-			-- Pin/unpin buffer
-			map("n", "<leader>p", "<Cmd>BufferPin<CR>", opts)
-
-			-- Goto pinned/unpinned buffer
-			--                 :BufferGotoPinned
-			--                 :BufferGotoUnpinned
-
-			-- Close buffer
-			map("n", "<leader>w", "<Cmd>BufferClose<CR>", opts)
-		end,
-		opts = {
-			animation = false,
-			auto_hide = 1,
-			clickable = false,
-			focus_on_close = "previous",
-			sidebar_filetypes = {
-				["neo-tree"] = { event = "BufWipeout" },
-			},
-		},
-		version = "^1.0.0", -- optional: only update when a new 1.x version is released
-	},
+	-- {
+	-- 	"romgrk/barbar.nvim",
+	-- 	dependencies = {
+	-- 		"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+	-- 		"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+	-- 	},
+	-- 	init = function()
+	-- 		vim.g.barbar_auto_setup = false
+	--
+	-- 		local map = vim.api.nvim_set_keymap
+	-- 		local opts = { noremap = true, silent = true }
+	--
+	-- 		-- Move to previous/next
+	-- 		map("n", "<leader>,", "<Cmd>BufferPrevious<CR>", opts)
+	-- 		map("n", "<leader>.", "<Cmd>BufferNext<CR>", opts)
+	--
+	-- 		-- Re-order to previous/next
+	-- 		map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
+	-- 		map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", opts)
+	--
+	-- 		-- Goto buffer in position...
+	-- 		map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>", opts)
+	-- 		map("n", "<leader>2", "<Cmd>BufferGoto 2<CR>", opts)
+	-- 		map("n", "<leader>3", "<Cmd>BufferGoto 3<CR>", opts)
+	-- 		map("n", "<leader>4", "<Cmd>BufferGoto 4<CR>", opts)
+	-- 		map("n", "<leader>5", "<Cmd>BufferGoto 5<CR>", opts)
+	-- 		map("n", "<leader>6", "<Cmd>BufferGoto 6<CR>", opts)
+	-- 		map("n", "<leader>7", "<Cmd>BufferGoto 7<CR>", opts)
+	-- 		map("n", "<leader>8", "<Cmd>BufferGoto 8<CR>", opts)
+	-- 		map("n", "<leader>9", "<Cmd>BufferGoto 9<CR>", opts)
+	-- 		map("n", "<leader>0", "<Cmd>BufferLast<CR>", opts)
+	--
+	-- 		-- Pin/unpin buffer
+	-- 		map("n", "<leader>p", "<Cmd>BufferPin<CR>", opts)
+	--
+	-- 		-- Goto pinned/unpinned buffer
+	-- 		--                 :BufferGotoPinned
+	-- 		--                 :BufferGotoUnpinned
+	--
+	-- 		-- Close buffer
+	-- 		map("n", "<leader>w", "<Cmd>BufferClose<CR>", opts)
+	-- 	end,
+	-- 	opts = {
+	-- 		animation = false,
+	-- 		auto_hide = 1,
+	-- 		clickable = false,
+	-- 		focus_on_close = "previous",
+	-- 		sidebar_filetypes = {
+	-- 			["neo-tree"] = { event = "BufWipeout" },
+	-- 		},
+	-- 	},
+	-- 	version = "^1.0.0", -- optional: only update when a new 1.x version is released
+	-- },
 
 	---------- NOICE ----------
 	{
